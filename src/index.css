@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 215 25% 27%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+
+    --primary: 172 68% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 172 66% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 164 41% 94%;
+    --muted-foreground: 215 15% 45%;
+
+    --accent: 168 60% 82%;
+    --accent-foreground: 215 25% 27%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 90%;
+    --input: 210 30% 90%;
+    --ring: 172 68% 46%;
+
+    --radius: 1.5rem;
+
+    /* Healing gradients and effects */
+    --gradient-healing: linear-gradient(135deg, hsl(168 64% 88%), hsl(166 73% 85%), hsl(172 64% 78%));
+    --gradient-peaceful: linear-gradient(180deg, hsl(180 42% 98%), hsl(160 45% 94%), hsl(168 55% 92%));
+    --shadow-soft: 0 18px 60px -28px hsl(172 66% 40% / 0.25);
+    --shadow-healing: 0 32px 80px -28px hsl(172 66% 35% / 0.3);
+    --wave-gradient: linear-gradient(120deg, #d7f2ef, #e8f5f1, #f9fbfa);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 25% 10%;
+    --foreground: 30 20% 95%;
+
+    --card: 210 22% 12%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 210 22% 12%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 180 45% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 30% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 18%;
+    --muted-foreground: 30 15% 70%;
+
+    --accent: 15 75% 65%;
+    --accent-foreground: 30 20% 95%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 18% 20%;
+    --input: 210 18% 20%;
+    --ring: 172 68% 46%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: "Poppins", "Inter", ui-sans-serif, system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI", sans-serif;
+    @apply bg-background text-foreground;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .hero-bg {
+    min-height: min(100vh, 960px);
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .hero-bg {
+      align-items: center;
+    }
+  }
+}
+
+@layer utilities {
+  /* 3D Transform utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Peaceful pulse */
+  @keyframes peaceful-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-peaceful-pulse {
+    animation: peaceful-pulse 4s ease-in-out infinite;
+  }
+
+  /* Gradient animations */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes orbit {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(24px, -24px, 0) scale(1.05);
+    }
+  }
+
+  .animate-orbit {
+    animation: orbit 12s ease-in-out infinite;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease forwards;
+  }
+
+  @keyframes soothing-waves {
+    0% {
+      transform: translateX(-10%);
+    }
+    50% {
+      transform: translateX(10%);
+    }
+    100% {
+      transform: translateX(-10%);
+    }
+  }
+
+  .animate-soothing-waves {
+    animation: soothing-waves 18s ease-in-out infinite;
+  }
+
+  @keyframes floating-shapes {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(12px, -16px, 0) scale(1.05);
+    }
+    66% {
+      transform: translate3d(-18px, 8px, 0) scale(0.98);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  .animate-floating-shapes {
+    animation: floating-shapes 16s ease-in-out infinite;
+  }
+
+  .bg-wave-gradient {
+    background-image: var(--wave-gradient);
+  }
+}
