@@ -21,6 +21,7 @@ import { BookingProvider } from "./hooks/useBookingModal";
 import { LimitedTimeOfferModal } from "./components/LimitedTimeOfferModal";
 import FloatingBookButton from "./components/FloatingBookButton";
 import { BlogProvider } from "./context/BlogContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
         <BookingProvider>
           <LimitedTimeOfferModal />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/specialties" element={<SpecialtiesPage />} />
